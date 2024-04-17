@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     EnvironmentPlugin({
       // Uses 'development' if the NODE_ENV environment variable is not defined.
-      NODE_ENV: "development",
+      NODE_ENV: "production",
 
       // Have in mind that variables coming from process.env are always strings.
       DEBUG: "false",
