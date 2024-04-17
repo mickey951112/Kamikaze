@@ -1,19 +1,17 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import EnvironmentPlugin from "vite-plugin-environment";
+// import EnvironmentPlugin from "vite-plugin-environment";
 import { NodeGlobalsPolyfillPlugin } from "@esbuild-plugins/node-globals-polyfill";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    EnvironmentPlugin({
-      // Uses 'development' if the NODE_ENV environment variable is not defined.
-      NODE_ENV: "production",
-
-      // Have in mind that variables coming from process.env are always strings.
-      DEBUG: "false",
-    }),
   ],
+  define: {
+    // Define environment variables directly here
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+    'process.env.DEBUG': JSON.stringify(process.env.DEBUG || 'false'),
+  },
   resolve: {
     alias: {
       // Provide aliases for node modules
